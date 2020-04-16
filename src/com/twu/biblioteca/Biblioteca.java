@@ -1,32 +1,42 @@
 package com.twu.biblioteca;
 
-import com.sun.codemodel.internal.JCase;
+import java.util.Vector;
+import java.util.ArrayList;
 
-import java.util.Scanner;
-
-public class Biblioteca {
+public class Biblioteca{
 
     static Repository BooksRepository = new Repository();
-    private static  String[] MenuOptions = {"Print Books"};
-    private static Scanner in = new Scanner(System.in);
+    static  ArrayList<Vector> Options = new ArrayList<>();
+    private static Menu MeuMenu = new Menu();
 
     private static void ShowMenu(){
-        int i = 0;
-
-        System.out.println("What would you like to do?");
-
-        for (String opt: MenuOptions){
-            System.out.println(i + " " + opt);
-            i++;
-        }
-        System.out.println();
+       int option = MeuMenu.askOption();
+       while(option != -1){
+           option = MeuMenu.askOption();
+       }
     }
 
+    private static void addOptions(){
+        MeuMenu.setOption(createOption("Show List Of Books", "PrintBooks", 0));
+        MeuMenu.setOption(createOption("Quit", "LeaveLibrary", -1));
+    }
+
+    private static void LeaveLibrary(){
+        System.exit(0);
+    }
+
+    private static Vector createOption(String Message, String Method, int Key ){
+        Vector v = new Vector();
+        v.add(Message);
+        v.add(Method);
+        v.add(Key);
+        return v;
+    }
 
     public static void main(String[] args) {
+        addOptions();
         Greetings();
         ShowMenu();
-        PrintBooks();
     }
 
     private static void Greetings(){
