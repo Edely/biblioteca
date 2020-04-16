@@ -63,6 +63,9 @@ public class Repository {
         }
         AllBooks.add(BookToReturn);
         CheckedBooks.remove(BookToReturn);
+
+        System.out.println("Thank You! Enjoy the book.\n");
+
         return true;
     }
 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Biblioteca {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Biblioteca. You one-stop-shop for great book titles in Brazil.");
+        System.out.println("Welcome to Biblioteca. You one-stop-shop for great book titles in Brazil.\n");
         Repository Iat = new Repository();
         ShowMenu(Iat);
     }
