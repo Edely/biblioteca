@@ -10,19 +10,21 @@ public class Biblioteca{
     private static void ShowMenu(){
 
         Map<Integer, String> Menu = new HashMap<Integer, String>();
-
         Menu.put(1, "Print Books");
 
-        System.out.println("What would you like to do?");
+        int choice = -1;
+        while(choice == -1){
+            ShowOptions(Menu);
+            choice = ReadInput(Menu);
+        }
+        ExecMenu(choice);
+    }
 
+    private static void ShowOptions(Map Menu){
+        System.out.println("What would you like to do?");
         Menu.forEach((key, value)->{
             System.out.printf( "%-5s | %-10s %n", key, value);
         });
-
-        int choice = ReadInput(Menu);
-        if(choice != -1){
-            ExecMenu(choice);
-        }
     }
 
     private static void ExecMenu(int choice){
@@ -41,6 +43,8 @@ public class Biblioteca{
             int option = in.nextInt();
             if(Menu.containsKey(option)){
                 return option;
+            }else{
+                System.out.println("Please select a valid option!");
             }
         }catch(Exception e){
             System.out.println("Please select a valid option!");
