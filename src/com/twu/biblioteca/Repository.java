@@ -59,6 +59,7 @@ public class Repository {
         String BookName = in.nextLine();
         Book BookToReturn = GetBook(BookName, CheckedBooks);
         if (BookToReturn == null) {
+            System.out.println("That is not a valid book to return.\n");
             return false;
         }
         AllBooks.add(BookToReturn);
