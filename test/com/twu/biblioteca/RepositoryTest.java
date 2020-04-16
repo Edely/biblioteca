@@ -28,20 +28,15 @@ public class RepositoryTest {
         Assert.assertTrue(Lista.size() > 0);
     }
 
-
     @Test
-    public void BookOnAllBooksShouldBeCheckOuted(){
-        Book RomeoAndJuliet = AnisioTeixeira.IsBookAvailable("Romeo and Juliet");
-        Assert.assertTrue(AnisioTeixeira.ProcessBook(RomeoAndJuliet));
-    }
-
-    @Test
-    public void ShouldTestIfBookIsAvailable(){
-        ArrayList<Book> Books = AnisioTeixeira.getAllBooks();
-        Book isAvailable = AnisioTeixeira.IsBookAvailable("The Price of Salt");
+    public void ShouldTestIfBookIsOnList(){
+        ArrayList<Book> AllBooks = AnisioTeixeira.getAllBooks();
+        Book isAvailable = AnisioTeixeira.GetBook("The Price of Salt", AllBooks);
         Assert.assertNull(isAvailable);
-        isAvailable = AnisioTeixeira.IsBookAvailable("I, Robot");
+        isAvailable = AnisioTeixeira.GetBook("I, Robot", AllBooks);
         Assert.assertNotNull(isAvailable);
     }
+
+
 
 }

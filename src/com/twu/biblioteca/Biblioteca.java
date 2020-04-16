@@ -21,7 +21,8 @@ public class Biblioteca {
         Map<Integer, String> Menu = new HashMap<Integer, String>();
         Menu.put(0, "Quit");
         Menu.put(1, "List Available Books");
-        Menu.put(2, "Checkout Book");
+        Menu.put(2, "Checkout a Book");
+        Menu.put(3, "Return a Book");
 
         while(true){
             System.out.println("What would you like to do?");
@@ -29,7 +30,6 @@ public class Biblioteca {
                 System.out.printf( "%-5s | %-10s %n", key, value);
             });
             int choice = ReadInput(Menu);
-
 
             switch (choice){
                 case(0):
@@ -40,6 +40,9 @@ public class Biblioteca {
                     break;
                 case(2):
                     Repo.CheckoutBook();
+                    break;
+                case(3):
+                    Repo.ReturnBook();
                     break;
                 default:
                     break;
@@ -55,12 +58,11 @@ public class Biblioteca {
             if(Menu.containsKey(option)){
                 return option;
             }else{
-                System.out.println("Please select a valid option!");
+                System.out.println("Please select a valid option!\n");
             }
         }catch(Exception e){
-            System.out.println("Please select a valid option!");
+            System.out.println("Please select a valid option!\n");
         }
-        System.out.println();
         return -1;
     }
 
