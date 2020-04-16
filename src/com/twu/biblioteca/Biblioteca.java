@@ -10,14 +10,15 @@ public class Biblioteca{
     private static void ShowMenu(){
 
         Map<Integer, String> Menu = new HashMap<Integer, String>();
+        Menu.put(0, "Quit");
         Menu.put(1, "Print Books");
 
-        int choice = -1;
-        while(choice == -1){
+
+        while(true){
             ShowOptions(Menu);
-            choice = ReadInput(Menu);
+            int choice = ReadInput(Menu);
+            ExecMenu(choice);
         }
-        ExecMenu(choice);
     }
 
     private static void ShowOptions(Map Menu){
@@ -29,6 +30,9 @@ public class Biblioteca{
 
     private static void ExecMenu(int choice){
         switch (choice){
+            case(0):
+                LeaveLibrary();
+                break;
             case(1):
                 PrintBooks();
                 break;
@@ -49,6 +53,7 @@ public class Biblioteca{
         }catch(Exception e){
             System.out.println("Please select a valid option!");
         }
+        System.out.println();
         return -1;
     }
 
@@ -70,6 +75,7 @@ public class Biblioteca{
         for (Book book: BooksRepository.getListOfBooks()) {
             System.out.printf( "%-40s | %10s | %15s %n", book.getName(), book.getYearFormatted(), book.getAuthor());
         }
+        System.out.println();
     }
 
 }
