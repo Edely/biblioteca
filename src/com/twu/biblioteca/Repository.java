@@ -1,6 +1,9 @@
 package com.twu.biblioteca;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class Repository {
 
@@ -18,9 +21,19 @@ public class Repository {
         AllBooks.add(new Book("Romeo and Juliet", "Shakespeare", 1595));
     }
 
-
-
     public ArrayList<Book> getAllBooks() {
         return AllBooks;
+    }
+
+    protected void ListAvailableBooks(){
+        System.out.println("These are our available books right now:\n");
+        for (Book book: getAllBooks()) {
+            System.out.printf( "%-40s | %10s | %15s %n", book.getName(), book.getYearFormatted(), book.getAuthor());
+        }
+        System.out.println();
+    }
+
+    protected boolean CheckoutBook(){
+        return true;
     }
 }
