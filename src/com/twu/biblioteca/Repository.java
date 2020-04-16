@@ -1,7 +1,4 @@
 package com.twu.biblioteca;
-
-import org.omg.CORBA.Object;
-
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -47,6 +44,7 @@ public class Repository {
         String BookName = bk.getName();
         Book bkReturned = IsBookAvailable(BookName);
         if(bkReturned == null){
+            System.out.println("Sorry, that book is not available.");
             return false;
         }
         CheckedBooks.add(bkReturned);
