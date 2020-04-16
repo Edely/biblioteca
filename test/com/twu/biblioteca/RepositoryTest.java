@@ -8,22 +8,32 @@ import java.util.ArrayList;
 
 public class RepositoryTest {
 
-    Repository Repo;
+    Biblioteca AnisioTeixeira;
 
     @Before
     public void setUp(){
-        Repo = new Repository();
+        AnisioTeixeira = new Biblioteca();
+    }
+
+    @Test
+    public void RepositoryShouldHaveAListOfNotAvailableBooks(){
+        //dado que um livro foi escolhido por um usuário
+
+        // quando um outro usuário acessa a biblioteca, ele deve ver apenas os livros que estao disponíveis no momento
+
+        // e o livro em questao deve ser armazendo numa lista de livros não disponíveis
     }
 
     @Test
     public void RepositoryShouldHaveAListOfBooks(){
-        ArrayList<Book> Lista = Repo.getListOfBooks();
+        ArrayList<Book> Lista = AnisioTeixeira.BooksRepository.getAllBooks();
         Assert.assertNotNull(Lista);
     }
 
+
     @Test
     public void ListOfBooksShouldNotBeEmpty(){
-        ArrayList<Book> Lista = Repo.getListOfBooks();
+        ArrayList<Book> Lista = AnisioTeixeira.BooksRepository.getAllBooks();
         Assert.assertTrue(Lista.size() > 0);
     }
 

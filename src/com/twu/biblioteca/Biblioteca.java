@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Biblioteca{
 
-    static Repository BooksRepository = new Repository();
-    private static void ShowMenu(){
+    Repository BooksRepository = new Repository();
+    protected void ShowMenu(){
 
         Map<Integer, String> Menu = new HashMap<Integer, String>();
         Menu.put(0, "Quit");
@@ -28,7 +28,7 @@ public class Biblioteca{
         });
     }
 
-    private static void ExecMenu(int choice){
+    private void ExecMenu(int choice){
         switch (choice){
             case(0):
                 LeaveLibrary();
@@ -61,21 +61,21 @@ public class Biblioteca{
         System.exit(0);
     }
 
-    public static void main(String[] args) {
-        Greetings();
-        ShowMenu();
-    }
 
-    private static void Greetings(){
+    protected void Greetings(){
         System.out.println("Welcome to Biblioteca. You one-stop-shop for great book titles in Brazil.");
     }
 
-    private static void PrintBooks(){
+    private void PrintBooks(){
         System.out.println("These are our available books right now:\n");
-        for (Book book: BooksRepository.getListOfBooks()) {
+        for (Book book: BooksRepository.getAllBooks()) {
             System.out.printf( "%-40s | %10s | %15s %n", book.getName(), book.getYearFormatted(), book.getAuthor());
         }
         System.out.println();
+    }
+
+    protected boolean CheckoutBook(){
+        return true;
     }
 
 }
