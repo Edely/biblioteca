@@ -5,7 +5,6 @@ public class Book {
     private String Name;
     private int Year;
     private String Author;
-    private boolean Availabel;
 
     public Book(String BookName, String BookAuthor, int BookYear){
         Name =      BookName;

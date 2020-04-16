@@ -8,33 +8,40 @@ import java.util.ArrayList;
 
 public class RepositoryTest {
 
-    Biblioteca AnisioTeixeira;
+    Repository AnisioTeixeira;
 
     @Before
     public void setUp(){
-        AnisioTeixeira = new Biblioteca();
-    }
-
-    @Test
-    public void RepositoryShouldHaveAListOfNotAvailableBooks(){
-        //dado que um livro foi escolhido por um usuário
-
-        // quando um outro usuário acessa a biblioteca, ele deve ver apenas os livros que estao disponíveis no momento
-
-        // e o livro em questao deve ser armazendo numa lista de livros não disponíveis
+        AnisioTeixeira = new Repository();
     }
 
     @Test
     public void RepositoryShouldHaveAListOfBooks(){
-        ArrayList<Book> Lista = AnisioTeixeira.BooksRepository.getAllBooks();
+        ArrayList<Book> Lista = AnisioTeixeira.getAllBooks();
         Assert.assertNotNull(Lista);
     }
 
 
     @Test
     public void ListOfBooksShouldNotBeEmpty(){
-        ArrayList<Book> Lista = AnisioTeixeira.BooksRepository.getAllBooks();
+        ArrayList<Book> Lista = AnisioTeixeira.getAllBooks();
         Assert.assertTrue(Lista.size() > 0);
+    }
+
+
+    @Test
+    public void BookOnAllBooksShouldBeCheckOuted(){
+        Book RomeoAndJuliet = AnisioTeixeira.IsBookAvailable("Romeo and Juliet");
+        Assert.assertTrue(AnisioTeixeira.ProcessBook(RomeoAndJuliet));
+    }
+
+    @Test
+    public void ShouldTestIfBookIsAvailable(){
+        ArrayList<Book> Books = AnisioTeixeira.getAllBooks();
+        Book isAvailable = AnisioTeixeira.IsBookAvailable("The Price of Salt");
+        Assert.assertNull(isAvailable);
+        isAvailable = AnisioTeixeira.IsBookAvailable("I, Robot");
+        Assert.assertNotNull(isAvailable);
     }
 
 }
