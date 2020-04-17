@@ -33,13 +33,13 @@ public class Menu {
                     Biblioteca.LeaveLibrary();
                     break;
                 case(1):
-                    repository.ListAvailableBooks();
+                    Biblioteca.ListAvailableBooks();
                     break;
                 case(2):
-                    repository.CheckoutBook();
+                    Biblioteca.CheckoutBook();
                     break;
                 case(3):
-                    repository.ReturnBook();
+                    Biblioteca.ReturnBook();
                     break;
                 default:
                     break;
