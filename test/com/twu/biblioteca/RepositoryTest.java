@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -11,7 +12,7 @@ public class RepositoryTest {
     Repository AnisioTeixeira;
 
     @Before
-    public void setUp(){
+    public void setUp() throws IOException {
         AnisioTeixeira = new Repository();
     }
 

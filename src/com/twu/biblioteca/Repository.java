@@ -1,4 +1,9 @@
 package com.twu.biblioteca;
+import sun.lwawt.macosx.CSystemTray;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -13,10 +18,18 @@ public class Repository {
     }
 
     private void createListOfBooks() {
-        AllBooks.add(new Book("I, Robot", "Isaac Asimov", 1950));
-        AllBooks.add(new Book("Do Androids Dream of Electric Sheep?", "Philip K. Dick", 1974));
-        AllBooks.add(new Book("The Odyssey", "Homer", -800));
-        AllBooks.add(new Book("Romeo and Juliet", "Shakespeare", 1595));
+
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader("books.csv"));
+            String row;
+            while ((row = csvReader.readLine()) != null) {
+                String[] data = row.split(";");
+                AllBooks.add(new Book(data[0], data[1], Integer.parseInt(data[2])));
+            }
+            csvReader.close();
+        } catch(IOException ie) {
+            ie.printStackTrace();
+        }
     }
 
     public ArrayList<Book> getAllBooks() {
