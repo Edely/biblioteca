@@ -27,7 +27,7 @@ public class Repository {
         return CheckedBooks;
     }
 
-    protected void ListAvailableBooks() {
+    public void ListAvailableBooks() {
         System.out.println("These are our available books right now:\n");
         for (Book book : getAllBooks()) {
             System.out.printf("%-40s | %10s | %15s %n", book.getName(), book.getYearFormatted(), book.getAuthor());
@@ -35,13 +35,9 @@ public class Repository {
         System.out.println();
     }
 
-    protected boolean CheckoutBook(){
+    public boolean CheckoutBook(){
 
-        System.out.println("Insert the name of the book:");
-        Scanner in = new Scanner(System.in);
-        String BookName = in.nextLine();
-
-        Book BookToCheck = GetBook(BookName, AllBooks);
+        Book BookToCheck = readInput(AllBooks);
         if (BookToCheck == null) {
             System.out.println("Sorry, that book is not available.\n");
             return false;
@@ -53,11 +49,8 @@ public class Repository {
         return  true;
     }
 
-    protected boolean ReturnBook(){
-        System.out.println("Insert the name of the book:");
-        Scanner in = new Scanner(System.in);
-        String BookName = in.nextLine();
-        Book BookToReturn = GetBook(BookName, CheckedBooks);
+    public boolean ReturnBook(){
+        Book BookToReturn = readInput(CheckedBooks);
         if (BookToReturn == null) {
             System.out.println("That is not a valid book to return.\n");
             return false;
@@ -68,6 +61,13 @@ public class Repository {
         System.out.println("Thank You! Enjoy the book.\n");
 
         return true;
+    }
+
+    private Book readInput(ArrayList<Book> checkedBooks) {
+        System.out.println("Insert the name of the book:");
+        Scanner in = new Scanner(System.in);
+        String BookName = in.nextLine();
+        return GetBook(BookName, checkedBooks);
     }
 
     public Book GetBook(String BookName, ArrayList<Book> ListOfBooks) {
