@@ -2,6 +2,7 @@ package com.twu.biblioteca.system;
 
 import com.twu.biblioteca.Biblioteca;
 import com.twu.biblioteca.Repository;
+import com.twu.biblioteca.Book;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,11 +23,11 @@ public class Menu {
         Menu.put(3, "Return a Book");
 
         while(true){
-            System.out.println("What would you like to do?");
+            System.out.println("What would you like to do?\n");
             Menu.forEach((key, value)->{
                 System.out.printf( "%-5s | %-10s %n", key, value);
             });
-            int choice = Biblioteca.ReadInput(Menu);
+            int choice = Biblioteca.ReadOptions(Menu);
 
             switch (choice){
                 case(0):
@@ -36,10 +37,12 @@ public class Menu {
                     Biblioteca.ListAvailableBooks();
                     break;
                 case(2):
-                    Biblioteca.CheckoutBook();
+                    Book BookToCheck = Biblioteca.ReadBookName(repository.GetAllBooks());
+                    Biblioteca.CheckoutBook(BookToCheck, repository);
                     break;
                 case(3):
-                    Biblioteca.ReturnBook();
+                    Book BookToReturn = Biblioteca.ReadBookName(repository.GetCheckedBooks());
+                    Biblioteca.ReturnBook(BookToReturn, repository);
                     break;
                 default:
                     break;

@@ -9,35 +9,29 @@ import java.util.ArrayList;
 
 public class RepositoryTest {
 
-    Repository AnisioTeixeira;
+    Repository Repo;
 
     @Before
     public void setUp() throws IOException {
-        AnisioTeixeira = new Repository();
+        Repo = new Repository();
     }
 
     @Test
-    public void RepositoryShouldHaveAListOfBooks(){
-        ArrayList<Book> Lista = AnisioTeixeira.getAllBooks();
-        Assert.assertNotNull(Lista);
+    public void RepositoryShouldHaveAListAvailableOfBooks(){
+        ArrayList<Book> Available = Repo.GetAllBooks();
+        Assert.assertNotNull(Available);
     }
 
+    @Test
+    public void RepositoryShouldHaveAListOfCheckedBooks(){
+        ArrayList<Book> Checked = Repo.GetCheckedBooks();
+        Assert.assertNotNull(Checked);
+    }
 
     @Test
     public void ListOfBooksShouldNotBeEmpty(){
-        ArrayList<Book> Lista = AnisioTeixeira.getAllBooks();
+        ArrayList<Book> Lista = Repo.GetAllBooks();
         Assert.assertTrue(Lista.size() > 0);
     }
-
-    @Test
-    public void ShouldTestIfBookIsOnList(){
-        ArrayList<Book> AllBooks = AnisioTeixeira.getAllBooks();
-        Book isAvailable = AnisioTeixeira.GetBook("The Price of Salt", AllBooks);
-        Assert.assertNull(isAvailable);
-        isAvailable = AnisioTeixeira.GetBook("I, Robot", AllBooks);
-        Assert.assertNotNull(isAvailable);
-    }
-
-
 
 }

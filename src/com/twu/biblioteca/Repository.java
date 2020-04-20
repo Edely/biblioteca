@@ -10,10 +10,10 @@ public class Repository {
     private ArrayList<Book> CheckedBooks = new ArrayList<Book>();
 
     public Repository() {
-        createListOfBooks();
+        CreateListOfBooks();
     }
 
-    private void createListOfBooks() {
+    private void CreateListOfBooks() {
 
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader("books.csv"));
@@ -28,13 +28,19 @@ public class Repository {
         }
     }
 
-    public ArrayList<Book> getAllBooks() {
+    public ArrayList<Book> GetAllBooks() {
         return AllBooks;
     }
 
-    public ArrayList<Book> getCheckedBooks() {
+    public ArrayList<Book> GetCheckedBooks() {
         return CheckedBooks;
     }
 
+    public void SetAllBooks(ArrayList<Book> allBooks) {
+        AllBooks = allBooks;
+    }
 
+    public void SetCheckedBooks(ArrayList<Book> checkedBooks) {
+        CheckedBooks = checkedBooks;
+    }
 }

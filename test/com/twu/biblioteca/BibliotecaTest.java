@@ -1,26 +1,31 @@
 package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Assert;
+import java.util.ArrayList;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 public class BibliotecaTest {
-
-    Biblioteca Library;
+    Repository Repo;
 
     @Before
     public void setUp() {
-        Library = new Biblioteca();
+        this.Repo = new Repository();
     }
 
     @Test
-    public void UserShouldCheckBooks(){
-        InputStream sysInBackup = System.in; // backup System.in to restore it later
-        ByteArrayInputStream in = new ByteArrayInputStream("I, Robot".getBytes());
-        System.setIn(in);
-        Library.CheckoutBook();
-        System.setIn(sysInBackup);
+    public void UserShouldCheckoutBook(){
+        String BookName = "I, Robot";
+        Book BookToCheck = Biblioteca.GetBook(BookName, Repo.GetAllBooks());
+        Assert.assertTrue(Biblioteca.CheckoutBook(BookToCheck, Repo));
     }
 
+    @Test
+    public void UserShouldReturnBook(){
+        String BookName = "Romeo and Juliet";
+        Book BookToCheck = Biblioteca.GetBook(BookName, Repo.GetAllBooks());
+        Biblioteca.CheckoutBook(BookToCheck, Repo);
+        Book BookToReturn = Biblioteca.GetBook(BookName, Repo.GetCheckedBooks());
+        Assert.assertTrue(Biblioteca.ReturnBook(BookToReturn, Repo));
+    }
 
 }
