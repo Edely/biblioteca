@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import com.sun.tools.javac.comp.Check;
 import com.twu.biblioteca.system.Menu;
 
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class Biblioteca {
 
     public static boolean CheckoutBook(){
 
-        Book BookToCheck = readInput(AllBooks);
+        Book BookToCheck = ReadBookName(AllBooks);
         if (BookToCheck == null) {
             System.out.println("Sorry, that book is not available.\n");
             return false;
@@ -58,7 +57,7 @@ public class Biblioteca {
     }
 
     public static boolean ReturnBook(){
-        Book BookToReturn = readInput(CheckedBooks);
+        Book BookToReturn = ReadBookName(CheckedBooks);
         if (BookToReturn == null) {
             System.out.println("That is not a valid book to return.\n");
             return false;
@@ -71,7 +70,7 @@ public class Biblioteca {
         return true;
     }
 
-    private static Book readInput(ArrayList<Book> checkedBooks){
+    private static Book ReadBookName(ArrayList<Book> checkedBooks){
         System.out.println("Insert the name of the book:");
         Scanner in = new Scanner(System.in);
         String BookName = in.nextLine();
